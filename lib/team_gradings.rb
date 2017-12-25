@@ -5,6 +5,7 @@ require 'date'
 require 'fileutils'
 require "team_gradings/group"
 require "team_gradings/mk_score"
+require "team_gradings/abc_to_321"
 require "team_gradings/final_score"
 
 
@@ -60,7 +61,8 @@ module TeamGradings
     def upload
       read_target
 
-      tmp_csv = MkScore.print
+      tmp_csv = MkScore.new
+      tmp2_csv = TransABCTo321.new(tmp_csv)
       system "ruby ./abc_to_321.rb < tmp.csv > tmp2.csv"
       system "./trans_hiki.rb < tmp2.csv > #{@target_file}"
       target_dir = "/Users/bob/Sites/new_ist_data/ist_data"

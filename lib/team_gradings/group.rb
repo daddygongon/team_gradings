@@ -32,9 +32,9 @@ class Group
   end
   def print()
     content = @member
-    report_score.each{|score| content << ","+score.to_s}
-    content << ","+speaker_score.to_s if speaker_score
-    return content
+    report_score.each{|score| content << score}
+    content << speaker_score if speaker_score
+    return content.join(',')
   end
 end
 
