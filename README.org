@@ -21,7 +21,7 @@ Or install it yourself as:
 ** Usage
 
 ** help
-#+begin_quote
+#+begin_src bash
 Commands:
   team_grading count           # count members in Group.list
   team_grading final           # mk final scores
@@ -32,7 +32,7 @@ Commands:
   team_grading report          # score report
   team_grading speaker         # score speakers
   team_grading upload          # upload tables
-#+end_quote
+#+end_src
 
 ** Development
 
