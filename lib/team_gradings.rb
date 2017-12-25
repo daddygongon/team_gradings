@@ -6,6 +6,7 @@ require 'fileutils'
 require "team_gradings/group"
 require "team_gradings/mk_score"
 require "team_gradings/abc_to_321"
+require "team_gradings/trans_hiki"
 require "team_gradings/final_score"
 
 
@@ -61,10 +62,9 @@ module TeamGradings
     def upload
       read_target
 
-      tmp_csv = MkScore.new
-      tmp2_csv = TransABCTo321.new(tmp_csv)
-      system "ruby ./abc_to_321.rb < tmp.csv > tmp2.csv"
-      system "./trans_hiki.rb < tmp2.csv > #{@target_file}"
+      tmp_csv = MkScore.new.print_score_table
+      File.open("./tmp2.csv",'w'){|file| file.print(TransABCTo321.new(tmp_csv).conts)}
+      File.open(@target_file,'w'){|file| file.print(TransHiki.new(tmp2.csv).conts)}
       target_dir = "/Users/bob/Sites/new_ist_data/ist_data"
 #      target_file = "ModelPhysTeamScore17"
       system "sudo cp #{@target_file} #{target_dir}/text"
