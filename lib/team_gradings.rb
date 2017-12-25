@@ -3,7 +3,9 @@ require "team_gradings/version"
 require 'thor'
 require 'date'
 require 'fileutils'
+require "team_gradings/mk_score"
 require "team_gradings/final_score"
+
 
 module TeamGradings
   class CLI < Thor
@@ -57,7 +59,7 @@ module TeamGradings
     def upload
       read_target
 
-      system "ruby ./mk_score.rb > tmp.csv"
+      tmp_csv = MkScore.print
       system "ruby ./abc_to_321.rb < tmp.csv > tmp2.csv"
       system "./trans_hiki.rb < tmp2.csv > #{@target_file}"
       target_dir = "/Users/bob/Sites/new_ist_data/ist_data"
