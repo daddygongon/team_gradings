@@ -34,9 +34,9 @@ module TeamGradings
     desc 'final_score', 'mk final scores'
     def final_score
       upload
-      MkGroups.new
-      tmp3_csv = File.read("tmp3.csv")
-      File.open(@target_file,'w'){|file| file.print(TransHiki.new(tmp3_csv).conts)}
+      FinalScore.new
+      group_csv = File.read("final_group_results.csv")
+      File.open(@target_file,'w'){|file| file.print(TransHiki.new(group_csv).conts)}
       setup_hiki
     end
 

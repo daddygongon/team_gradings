@@ -1,28 +1,17 @@
 #! /usr/bin/ruby
 # -*- coding: utf-8 -*-
-require 'pp'
 
-
-class MkGroups
+class FinalScore
   attr_reader :groups, :scores, :bonus
   def initialize
     @groups = mk_group('./Group.list')
     @bonus = get_bonus('./tmp2.csv')
     @scores = get_final_exam_score('./final_exam.csv')
     calc_group_score
-    print_results_all
+    print_group_results
     print_personal_results
   end
-  def calc_group_score
-    @groups.each do |group|
-      printf "Name: %s\n", name = group.name
-      printf "Average:%7.2f\n", group.get_average(@scores)
-      printf "Bonus  :%4.0f\n", group.bonus = @bonus[name].to_i
-      final = group.average + group.bonus
-      group.final_score = (final > 100) ? 100 : final
-      printf "Final  :%7.2f\n", group.final_score
-    end
-  end
+
   def mk_group(group_list)
     groups = []
     File.open(group_list).each do |line|
@@ -31,6 +20,15 @@ class MkGroups
       groups << Group.new(name, member)
     end
     return groups
+  end
+  def calc_group_score
+    @groups.each do |group|
+      group.get_average(@scores)
+      group.bonus = @bonus[group.name].to_i
+      final = group.average + group.bonus
+      group.final_score = (final > 100) ? 100 : final
+      printf("%s, %4d, %4d, %4d\n", group.name, group.average, group.bonus, group.final_score)
+    end
   end
   def get_final_exam_score(file)
     scores = Hash.new
@@ -48,7 +46,8 @@ class MkGroups
     end
     return bonus
   end
-  def print_results_all
+  # add average and final to tmp2.csv lines
+  def print_group_results
     lines = File.readlines('./tmp2.csv')
     cont = ""
     cont << mk_header(lines[0])
@@ -60,14 +59,14 @@ class MkGroups
       final = @groups[g_i].final_score.to_i
       cont << line.chomp+","+average.to_s+","+final.to_s+"\n"
     end
-    File.open('./tmp3.csv','w'){|file| file.print cont}
+    File.open('./final_group_results.csv','w'){|file| file.print cont}
   end
   def print_personal_results
     conts = ""
     @groups.each do |group|
       conts << group.put_personal_score(@scores)
     end
-    File.open('./tmp4.csv','w'){|file| file.print conts}
+    File.open('./personal_results.csv','w'){|file| file.print conts}
   end
   def mk_header(header)
     ele = header.split(',')

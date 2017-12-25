@@ -11,19 +11,19 @@ class Group
   end
   def get_average(scores)
     num, sum = 0, 0.0
-    @members.each do |no|
-      next if scores[no]==nil
-      sum += scores[no].to_f
+    @members.each do |id|
+      next if scores[id]==nil
+      sum += scores[id].to_f
       num += 1
     end
     @average = (sum/num).round
   end
   def put_personal_score(scores)
     cont_all = ""
-    @members.each do |no|
-      cont = no.to_s+","
-      next if scores[no]==nil
-      cont << scores[no]+","
+    @members.each do |id|
+      cont = id.to_s+","
+      next if scores[id]==nil
+      cont << scores[id]+","
       cont << @average.to_s+","
       cont << @final_score.to_s
       cont_all << cont+"\n"
