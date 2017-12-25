@@ -3,6 +3,7 @@ require "team_gradings/version"
 require 'thor'
 require 'date'
 require 'fileutils'
+require "team_gradings/group"
 require "team_gradings/mk_score"
 require "team_gradings/final_score"
 

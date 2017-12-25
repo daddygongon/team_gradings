@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-require 'group'
+
 # make hash table between member and group
 group=Hash.new
 m2g=Hash.new

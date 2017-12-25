@@ -2,36 +2,6 @@
 # -*- coding: utf-8 -*-
 require 'pp'
 
-class Group
-  attr_accessor :member, :bonus, :final_score, :average, :name
-  def initialize(name, member)
-    @name = name
-    @member = member.split(' ')
-    @bonus=0
-    @average = 0
-  end
-  def get_average(scores)
-    num, sum = 0, 0.0
-    member.each do |no|
-      next if scores[no]==nil
-      sum += scores[no].to_f
-      num += 1
-    end
-    @average = (sum/num).round
-  end
-  def put_personal_score(scores)
-    cont_all = ""
-    member.each do |no|
-      cont = no.to_s+","
-      next if scores[no]==nil
-      cont << scores[no]+","
-      cont << @average.to_s+","
-      cont << @final_score.to_s
-      cont_all << cont+"\n"
-    end
-    return cont_all
-  end
-end
 
 class MkGroups
   attr_reader :groups, :scores, :bonus
