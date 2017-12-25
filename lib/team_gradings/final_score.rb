@@ -36,9 +36,9 @@ end
 class MkGroups
   attr_reader :groups, :scores, :bonus
   def initialize
-    @groups = mk_group('../Group.list')
+    @groups = mk_group('./Group.list')
     @bonus = get_bonus('./tmp2.csv')
-    @scores = get_final_exam_score('../final_exam.csv')
+    @scores = get_final_exam_score('./final_exam.csv')
     calc_group_score
     print_results_all
     print_personal_results
@@ -112,5 +112,4 @@ class MkGroups
   end
 end
 
-MkGroups.new
 

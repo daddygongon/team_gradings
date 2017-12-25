@@ -3,7 +3,7 @@ require "team_gradings/version"
 require 'thor'
 require 'date'
 require 'fileutils'
-require_relative "team_gradings/final_score"
+require "team_gradings/final_score"
 
 module TeamGradings
   class CLI < Thor
@@ -57,8 +57,8 @@ module TeamGradings
     def upload
       read_target
 
-      system "ruby ./mk_score.rb > tmp.csv"
-      system "ruby ./abc_to_321.rb < tmp.csv > tmp2.csv"
+      system "ruby ./lib/mk_score.rb > tmp.csv"
+      system "ruby ./lib/abc_to_321.rb < tmp.csv > tmp2.csv"
       system "./trans_hiki.rb < tmp2.csv > #{@target_file}"
       target_dir = "/Users/bob/Sites/new_ist_data/ist_data"
 #      target_file = "ModelPhysTeamScore17"
@@ -73,27 +73,27 @@ module TeamGradings
     def speaker(*argv)
       date = argv[0] || Date.today.strftime("%m/%d")
       print_speaker_list(date)
-      system "open -a mi ../Speaker.list"
+      system "open -a mi ./Speaker.list"
     end
 
     desc 'report', 'score report'
     def report
-      system "open ../Report.tsv"
+      system "open ./Report.tsv"
     end
 
     desc 'group', 'edit group list'
     def group
-      system "emacs ../Group.list"
+      system "emacs ./Group.list"
     end
 
     no_commands{
       def read_target()
         begin
-          @target_file = File.read("../.team_grading")
+          @target_file = File.read("./.team_gradings")
         rescue
           puts "input target_file of hiki"
           @target_file = STDIN.gets.chomp #"NumRecipeScore17"
-          File.open("../.team_grading",'w'){|f| f.print @target_file}
+          File.open("./.team_gradings",'w'){|f| f.print @target_file}
         end
       end
       def print_speaker_list(date)
