@@ -10,9 +10,9 @@ Add this line to your application's Gemfile:
 gem 'team_gradings'
 #+end_src
 
-And then execute: = $ bundle=
+And then execute: =$ bundle=
 
-Or install it yourself as: = $ gem install team_gradings =
+Or install it yourself as: =$ gem install team_gradings=
 
 
 ** Usage
