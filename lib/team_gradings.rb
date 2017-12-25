@@ -24,7 +24,6 @@ module TeamGradings
     def initial
       read_target
       p @target_file
-      @target_dir = "/Users/bob/Sites/new_ist_data/ist_data"
       ["Group.list","Report.tsv","Speaker.list"].each do |file|
         next if File.exists?(File.join('.',file))
         FileUtils.cp(File.join('templates',file), '.', verbose: true)
@@ -77,6 +76,7 @@ module TeamGradings
         system "open -a safari http://localhost/ist/?#{@target_file}"
       end
       def read_target()
+        @target_dir = "/Users/bob/Sites/new_ist_data/ist_data"
         begin
           @target_file = File.read("./.team_gradings")
         rescue
