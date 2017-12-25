@@ -25,8 +25,8 @@ module TeamGradings
       read_target
       p @target_file
       ["Group.list","Report.tsv","Speaker.list"].each do |file|
-        next if File.exists?(File.join('..',file))
-        FileUtils.cp(File.join('templates',file), '..', verbose: true)
+        next if File.exists?(File.join('.',file))
+        FileUtils.cp(File.join('templates',file), '.', verbose: true)
       end
       exit
     end
@@ -51,7 +51,8 @@ module TeamGradings
       #      system "./lib/final_score3.rb"
       MkGroups.new
       target_dir = "/Users/bob/Sites/new_ist_data/ist_data"
-      system "./trans_hiki.rb < tmp3.csv > #{@target_file}"
+      tmp3_csv = File.read("tmp3.csv")
+      File.open(@target_file,'w'){|file| file.print(TransHiki.new(tmp3_csv).conts)}
       system "sudo cp #{@target_file} #{target_dir}/text"
       system "sudo chown _www #{target_dir}/text/#{@target_file}"
       system "sudo rm #{target_dir}/cache/parser/#{@target_file}"
@@ -63,10 +64,12 @@ module TeamGradings
       read_target
 
       tmp_csv = MkScore.new.print_score_table
-      File.open("./tmp2.csv",'w'){|file| file.print(TransABCTo321.new(tmp_csv).conts)}
-      File.open(@target_file,'w'){|file| file.print(TransHiki.new(tmp2.csv).conts)}
+      tmp2_csv = TransABCTo321.new(tmp_csv).conts
+      File.open("./tmp2.csv",'w'){|file| file.print(tmp2_csv) }
+      File.open(@target_file,'w'){|file| file.print(TransHiki.new(tmp2_csv).conts)}
       target_dir = "/Users/bob/Sites/new_ist_data/ist_data"
 #      target_file = "ModelPhysTeamScore17"
+      #      FileUtils.cp( @target_file, File.join(target_dir,"text") )
       system "sudo cp #{@target_file} #{target_dir}/text"
       system "sudo chown _www #{target_dir}/text/#{@target_file}"
       system "sudo rm #{target_dir}/cache/parser/#{@target_file}"
