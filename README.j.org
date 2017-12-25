@@ -1,0 +1,34 @@
+#+STARTUP: indent nolineimages nofold
+
+* team gradingの仕方
+** initial
+1. 科目の名前(hikiのfile名)をどっかに置く
+1. Group.listを作成
+
+** 日常手順
+1. team_grading report
+1. team_grading speaker
+1. team_grading upload
+1. hiki sync
+
+** final score
+1. 個人成績をfinal_exam.csvに記録(no, score\n, ...)
+1. group平均を記録
+1. bonusを追加して，group成績を確定．uploadに回す
+1. 個人成績とgroup成績とgroup最終成績を出力(tmp4.csv)
+1. luna sheetに登録
+1. upload
+
+** help
+#BEGIN_QUOTE
+Commands:
+  team_grading count           # count members in Group.list
+  team_grading final           # mk final scores
+  team_grading group           # edit group list
+  team_grading help [COMMAND]  # Describe available commands or one specific command
+  team_grading initial         # setup initial files on the upstream
+  team_grading list            # list group name
+  team_grading report          # score report
+  team_grading speaker         # score speakers
+  team_grading upload          # upload tables
+#END_QUOTE
