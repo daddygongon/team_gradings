@@ -1,4 +1,56 @@
 #+STARTUP: indent nolineimages nofold
+* TeamGradings
+
+procedures for team gradings
+** Installation
+
+Add this line to your application's Gemfile:
+
+```ruby
+gem 'team_gradings'
+```
+
+And then execute:
+
+    $ bundle
+
+Or install it yourself as:
+
+    $ gem install team_gradings
+
+** Usage
+
+** help
+#BEGIN_QUOTE
+Commands:
+  team_grading count           # count members in Group.list
+  team_grading final           # mk final scores
+  team_grading group           # edit group list
+  team_grading help [COMMAND]  # Describe available commands or one specific command
+  team_grading initial         # setup initial files on the upstream
+  team_grading list            # list group name
+  team_grading report          # score report
+  team_grading speaker         # score speakers
+  team_grading upload          # upload tables
+#END_QUOTE
+
+** Development
+
+After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+
+To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+
+** Contributing
+
+Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/team_gradings. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+
+** License
+
+The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+
+** Code of Conduct
+
+Everyone interacting in the TeamGradings project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/team_gradings/blob/master/CODE_OF_CONDUCT.md).
 
 * team gradingの仕方
 ** initial
@@ -19,16 +71,3 @@
 1. luna sheetに登録
 1. upload
 
-** help
-#BEGIN_QUOTE
-Commands:
-  team_grading count           # count members in Group.list
-  team_grading final           # mk final scores
-  team_grading group           # edit group list
-  team_grading help [COMMAND]  # Describe available commands or one specific command
-  team_grading initial         # setup initial files on the upstream
-  team_grading list            # list group name
-  team_grading report          # score report
-  team_grading speaker         # score speakers
-  team_grading upload          # upload tables
-#END_QUOTE
