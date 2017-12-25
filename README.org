@@ -12,11 +12,11 @@ gem 'team_gradings'
 
 And then execute:
 
-== $ bundle ==
+= $ bundle =
 
 Or install it yourself as:
 
-== $ gem install team_gradings ==
+= $ gem install team_gradings =
 
 ** Usage
 
