@@ -57,8 +57,8 @@ module TeamGradings
     def upload
       read_target
 
-      system "ruby ./lib/mk_score.rb > tmp.csv"
-      system "ruby ./lib/abc_to_321.rb < tmp.csv > tmp2.csv"
+      system "ruby ./mk_score.rb > tmp.csv"
+      system "ruby ./abc_to_321.rb < tmp.csv > tmp2.csv"
       system "./trans_hiki.rb < tmp2.csv > #{@target_file}"
       target_dir = "/Users/bob/Sites/new_ist_data/ist_data"
 #      target_file = "ModelPhysTeamScore17"

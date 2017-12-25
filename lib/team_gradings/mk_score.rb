@@ -1,21 +1,5 @@
 # -*- coding: utf-8 -*-
-
-class Group
-  attr_accessor :member, :speaker_score, :report_score
-  def initialize(mem)
-    @member = mem
-    @speaker_score = ""
-    @report_score = []
-  end
-
-  def print()
-    content = @member
-    report_score.each{|score| content << ","+score.to_s}
-    content << ","+speaker_score.to_s if speaker_score
-    return content
-  end
-end
-
+require 'group'
 # make hash table between member and group
 group=Hash.new
 m2g=Hash.new
@@ -24,7 +8,7 @@ File.open(File.join('..',"Group.list"),"r").each do |line|
   l1=line.chomp.split(/,/)
   team_name=l1[0].strip
   members=l1[1]
-  g=Group.new(members)
+  g=Group.new(team_name, members)
   l1[1].split(/ /).each do |mem|
       m2g.store(mem,team_name)
   end
