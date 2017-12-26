@@ -8,8 +8,8 @@ class MkScore
     @group = {}
     @m2g = {}
     mk_group
-    get_speaker_score
-    get_report_score
+    gets_speaker_score
+    gets_report_score
     print_score_table
   end
 
@@ -17,8 +17,7 @@ class MkScore
     File.open(File.join('.', 'Group.list'), 'r').each do |line|
       next if line =~ /^\#/
       l1 = line.strip.split(/,/)
-      team_name = l1[0]
-      members = l1[1]
+      team_name, members = l1 #, l1[1]
       g = Group.new(team_name, members)
       l1[1].split(/ /).each do |mem|
         @m2g.store(mem, team_name)
@@ -27,7 +26,7 @@ class MkScore
     end
   end
 
-  def get_speaker_score
+  def gets_speaker_score
     File.readlines(File.join('.', 'Speaker.list')).each do |line|
       next if line =~ /^\#/
       next unless m = line.chomp.match(/^([\d|\/]+) (.+)/)
@@ -43,7 +42,7 @@ class MkScore
     end
   end
 
-  def get_report_score
+  def gets_report_score
     lines = File.readlines(File.join('.', 'Report.tsv'), '\r')
     lines_conv = lines[0].kconv(Kconv::UTF8, Kconv::UTF16).split("\n")
     @head = lines_conv.shift
