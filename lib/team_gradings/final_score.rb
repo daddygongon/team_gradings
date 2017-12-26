@@ -19,66 +19,71 @@ class FinalScore
       next if name[0] == '#'
       groups << Group.new(name, member)
     end
-    return groups
+    groups
   end
+
   def calc_group_score
     @groups.each do |group|
       group.get_average(@scores)
       group.bonus = @bonus[group.name].to_i
       final = group.average + group.bonus
-      group.final_score = (final > 100) ? 100 : final
+      group.final_score = final > 100 ? 100 : final
       printf("%s, %4d, %4d, %4d\n", group.name, group.average, group.bonus, group.final_score)
     end
   end
+
   def get_final_exam_score(file)
-    scores = Hash.new
+    scores = {}
     File.open(file).each do |line|
-      no,score = line.chomp.split(/,/)
-      scores.store(no,score)
+      no, score = line.chomp.split(/,/)
+      scores.store(no, score)
     end
-    return scores
+    scores
   end
+
   def get_bonus(file)
-    bonus = Hash.new
+    bonus = {}
     File.open(file).each do |line|
       element = line.chomp.split(/,/)
-      bonus.store(element[0],element[-1].split('/')[0])
+      bonus.store(element[0], element[-1].split('/')[0])
     end
-    return bonus
+    bonus
   end
+
   # add average and final to tmp2.csv lines
   def print_group_results
     lines = File.readlines('./tmp2.csv')
-    cont = ""
+    cont = ''
     cont << mk_header(lines[0])
     lines.each do |line|
       name = line.split(/,/)[0]
       g_i = find_number(name)
-      next if g_i == nil
+      next if g_i.nil?
       average = @groups[g_i].average.to_i
       final = @groups[g_i].final_score.to_i
-      cont << line.chomp+","+average.to_s+","+final.to_s+"\n"
+      cont << line.chomp + ',' + average.to_s + ',' + final.to_s + "\n"
     end
-    File.open('./final_group_results.csv','w'){|file| file.print cont}
+    File.open('./final_group_results.csv', 'w') { |file| file.print cont }
   end
+
   def print_personal_results
-    conts = ""
+    conts = ''
     @groups.each do |group|
       conts << group.put_personal_score(@scores)
     end
-    File.open('./personal_results.csv','w'){|file| file.print conts}
+    File.open('./personal_results.csv', 'w') { |file| file.print conts }
   end
+
   def mk_header(header)
     ele = header.split(',')
-    header = ele[0..-2].join(",")
+    header = ele[0..-2].join(',')
     header << ",ボーナス合計,最終試験平均,最終スコア\n"
   end
+
   def find_number(name)
-    @groups.each_with_index do |group,i|
+    @groups.each_with_index do |group, i|
       return i if group.name == name
     end
-    return nil
+    nil
   end
 end
-
-
