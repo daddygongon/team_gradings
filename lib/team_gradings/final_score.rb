@@ -1,6 +1,6 @@
-#! /usr/bin/ruby
 # -*- coding: utf-8 -*-
 
+# grading final scores
 class FinalScore
   attr_reader :groups, :scores, :bonus
   def initialize
@@ -28,7 +28,8 @@ class FinalScore
       group.bonus = @bonus[group.name].to_i
       final = group.average + group.bonus
       group.final_score = final > 100 ? 100 : final
-      printf("%s, %4d, %4d, %4d\n", group.name, group.average, group.bonus, group.final_score)
+      printf("%s, %4d, %4d, %4d\n", group.name, group.average,
+             group.bonus, group.final_score)
     end
   end
 
@@ -55,15 +56,17 @@ class FinalScore
     lines = File.readlines('./tmp2.csv')
     cont = ''
     cont << mk_header(lines[0])
-    lines.each do |line|
-      name = line.split(/,/)[0]
-      g_i = find_number(name)
-      next if g_i.nil?
-      average = @groups[g_i].average.to_i
-      final = @groups[g_i].final_score.to_i
-      cont << line.chomp + ',' + average.to_s + ',' + final.to_s + "\n"
-    end
+    cont << push_average_final_score(lines)
     File.open('./final_group_results.csv', 'w') { |file| file.print cont }
+  end
+
+  def push_average_final_score(lines)
+    lines.each do |line|
+      g_i = find_number(line.split(/,/)[0])
+      next if g_i.nil?
+      cont << "#{line.chomp},#{@groups[g_i].average},"
+      cont << "#{@groups[g_i].final_score}\n"
+    end
   end
 
   def print_personal_results
