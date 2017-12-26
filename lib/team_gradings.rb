@@ -1,20 +1,20 @@
 # -*- coding: utf-8 -*-
-require "team_gradings/version"
+require 'team_gradings/version'
 require 'thor'
 require 'date'
 require 'fileutils'
-require "team_gradings/group"
-require "team_gradings/mk_score"
-require "team_gradings/abc_to_321"
-require "team_gradings/trans_hiki"
-require "team_gradings/final_score"
-
+require 'team_gradings/group'
+require 'team_gradings/mk_score'
+require 'team_gradings/abc_to_321'
+require 'team_gradings/trans_hiki'
+require 'team_gradings/final_score'
 
 module TeamGradings
+  # cli for team gradings
   class CLI < Thor
     desc 'list', 'list group name'
     def list
-      File.readlines(File.join('..',"Group.list")).each do |line|
+      File.readlines(File.join('..', 'Group.list')).each do |line|
         next if line =~ /^\#/
         puts line.split(',')[0]
       end
@@ -24,9 +24,9 @@ module TeamGradings
     def initial
       read_target
       p @target_file
-      ["Group.list","Report.tsv","Speaker.list"].each do |file|
-        next if File.exists?(File.join('.',file))
-        FileUtils.cp(File.join('templates',file), '.', verbose: true)
+      ['Group.list', 'Report.tsv', 'Speaker.list'].each do |file|
+        next if File.exist?(File.join('.', file))
+        FileUtils.cp(File.join('templates', file), '.', verbose: true)
       end
       exit
     end
@@ -35,8 +35,10 @@ module TeamGradings
     def final_score
       upload
       FinalScore.new
-      group_csv = File.read("final_group_results.csv")
-      File.open(@target_file,'w'){|file| file.print(TransHiki.new(group_csv).conts)}
+      group_csv = File.read('final_group_results.csv')
+      File.open(@target_file, 'w') do |file|
+        file.print(TransHiki.new(group_csv).conts)
+      end
       setup_hiki
     end
 
@@ -46,53 +48,55 @@ module TeamGradings
 
       tmp_csv = MkScore.new.print_score_table
       tmp2_csv = TransABCTo321.new(tmp_csv).conts
-      File.open("./tmp2.csv",'w'){|file| file.print(tmp2_csv) }
-      File.open(@target_file,'w'){|file| file.print(TransHiki.new(tmp2_csv).conts)}
+      File.open('./tmp2.csv', 'w') { |file| file.print(tmp2_csv) }
+      File.open(@target_file, 'w') do |file|
+        file.print(TransHiki.new(tmp2_csv).conts)
+      end
       setup_hiki
     end
 
     desc 'speaker', 'score speakers'
     def speaker(*argv)
-      date = argv[0] || Date.today.strftime("%m/%d")
+      date = argv[0] || Date.today.strftime('%m/%d')
       print_speaker_list(date)
-      system "open -a mi ./Speaker.list"
+      system 'open -a mi ./Speaker.list'
     end
 
     desc 'report', 'score report'
     def report
-      system "open ./Report.tsv"
+      system 'open ./Report.tsv'
     end
 
     desc 'group', 'edit group list'
     def group
-      system "emacs ./Group.list"
+      system 'emacs ./Group.list'
     end
 
-    no_commands{
+    no_commands do
       def setup_hiki
         system "sudo cp #{@target_file} #{@target_dir}/text"
         system "sudo chown _www #{@target_dir}/text/#{@target_file}"
         system "sudo rm #{@target_dir}/cache/parser/#{@target_file}"
         system "open -a safari http://localhost/ist/?#{@target_file}"
       end
-      def read_target()
-        @target_dir = "/Users/bob/Sites/new_ist_data/ist_data"
+
+      def read_target
+        @target_dir = '/Users/bob/Sites/new_ist_data/ist_data'
         begin
-          @target_file = File.read("./.team_gradings")
+          @target_file = File.read('./.team_gradings')
         rescue
-          puts "input target_file of hiki"
-          @target_file = STDIN.gets.chomp #"NumRecipeScore17"
-          File.open("./.team_gradings",'w'){|f| f.print @target_file}
+          puts 'input target_file of hiki'
+          @target_file = STDIN.gets.chomp # "NumRecipeScore17"
+          File.open('./.team_gradings', 'w') { |f| f.print @target_file }
         end
       end
+
       def print_speaker_list(date)
-        File.readlines(File.join('.',"Group.list")).each do |line|
+        File.readlines(File.join('.', 'Group.list')).each do |line|
           next if line =~ /^\#/
           print "#{date} #{line.split(/,/)[0]}\n"
         end
       end
-    }
+    end
   end
-
 end
-
