@@ -39,20 +39,19 @@ module TeamGradings
       File.open(@target_file, 'w') do |file|
         file.print(TransHiki.new(group_csv).conts)
       end
-      setup_hiki
+      upload_to_hiki
     end
 
     desc 'upload', 'upload tables'
     def upload
       read_target
-
       tmp_csv = MkScore.new.print_score_table
       tmp2_csv = TransABCTo321.new(tmp_csv).conts
       File.open('./tmp2.csv', 'w') { |file| file.print(tmp2_csv) }
       File.open(@target_file, 'w') do |file|
         file.print(TransHiki.new(tmp2_csv).conts)
       end
-      setup_hiki
+      upload_to_hiki
     end
 
     desc 'speaker', 'score speakers'
@@ -73,7 +72,7 @@ module TeamGradings
     end
 
     no_commands do
-      def setup_hiki
+      def upload_to_hiki
         system "sudo cp #{@target_file} #{@target_dir}/text"
         system "sudo chown _www #{@target_dir}/text/#{@target_file}"
         system "sudo rm #{@target_dir}/cache/parser/#{@target_file}"
