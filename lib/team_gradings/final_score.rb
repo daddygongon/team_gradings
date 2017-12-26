@@ -54,8 +54,7 @@ class FinalScore
   # add average and final to tmp2.csv lines
   def print_group_results
     lines = File.readlines('./tmp2.csv')
-    conts = ''
-    conts << mk_header(lines[0])
+    conts = String.new(mk_header(lines[0]))
     conts << push_average_final_score(lines)
     File.open('./final_group_results.csv', 'w') { |file| file.print conts }
   end
