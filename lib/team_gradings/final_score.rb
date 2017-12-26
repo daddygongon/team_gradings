@@ -54,19 +54,21 @@ class FinalScore
   # add average and final to tmp2.csv lines
   def print_group_results
     lines = File.readlines('./tmp2.csv')
-    cont = ''
-    cont << mk_header(lines[0])
-    cont << push_average_final_score(lines)
-    File.open('./final_group_results.csv', 'w') { |file| file.print cont }
+    conts = ''
+    conts << mk_header(lines[0])
+    conts << push_average_final_score(lines)
+    File.open('./final_group_results.csv', 'w') { |file| file.print conts }
   end
 
   def push_average_final_score(lines)
+    conts = ''
     lines.each do |line|
       g_i = find_number(line.split(/,/)[0])
       next if g_i.nil?
-      cont << "#{line.chomp},#{@groups[g_i].average},"
-      cont << "#{@groups[g_i].final_score}\n"
+      conts << "#{line.chomp},#{@groups[g_i].average},"
+      conts << "#{@groups[g_i].final_score}\n"
     end
+    conts
   end
 
   def print_personal_results
