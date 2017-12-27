@@ -16,10 +16,9 @@ class MkScore
   def mk_group
     File.open(File.join('.', 'Group.list'), 'r').each do |line|
       next if line =~ /^\#/
-      l1 = line.strip.split(/,/)
-      team_name, members = l1 #, l1[1]
+      team_name, members = line.strip.split(/,/)
       g = Group.new(team_name, members)
-      l1[1].split(/ /).each do |mem|
+      members.split(/ /).each do |mem|
         @m2g.store(mem, team_name)
       end
       @group.store(team_name, g)
@@ -29,13 +28,11 @@ class MkScore
   def gets_speaker_score
     File.readlines(File.join('.', 'Speaker.list')).each do |line|
       next if line =~ /^\#/
-      next unless m = line.chomp.match(/^([\d|\/]+) (.+)/)
-      date = m[1]
-      team = m[2]
-      next unless team
+      next unless m = line.match(/^([\d|\/]+) (.+)/)
+      date, team = m[1..2]
       team_name = !@group[team].nil? ? team : @m2g[team]
       if !@group[team_name].nil?
-        @group[team_name].speaker_score << date.to_s + ' '
+        @group[team_name].speaker_score << date + ' '
       else
         $stderr.print 'Non list:' + team + "\n"
       end
