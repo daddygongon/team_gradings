@@ -3,11 +3,11 @@ require 'kconv'
 
 class TransHiki
   attr_accessor :conts
-  def initialize(tmp2_csv)
+  def initialize(bonus_talbe_csv)
     @conts = "!!!グループ得点\n"
 
     sep = '||'
-    lines = tmp2_csv.split("\n")
+    lines = bonus_talbe_csv.split("\n")
     lines.each do |line|
       elem1 = line.chomp.split(/,/)
       @conts << sep

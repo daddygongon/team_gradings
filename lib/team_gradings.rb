@@ -47,7 +47,7 @@ module TeamGradings
       read_target
       weekly_table = MkScore.new.print_score_table
       table_with_scores = TransABCTo321.new(weekly_table).conts
-      File.open('./tmp2.csv', 'w') { |file| file.print(table_with_scores) }
+      File.open('./bonus_table.csv', 'w') { |file| file.print(table_with_scores) }
       File.open(@target_file, 'w') do |file|
         file.print(TransHiki.new(table_with_scores).conts)
       end

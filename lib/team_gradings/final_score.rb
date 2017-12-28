@@ -5,7 +5,7 @@ class FinalScore
   attr_reader :groups, :scores, :bonus
   def initialize
     @groups = mk_group('./Group.list')
-    @bonus = get_bonus('./tmp2.csv')
+    @bonus = get_bonus('./bonus_table.csv')
     @scores = get_final_exam_score('./final_exam.csv')
     calc_group_score
     print_group_results
@@ -51,9 +51,9 @@ class FinalScore
     bonus
   end
 
-  # add average and final to tmp2.csv lines
+  # add average and final to bonus_table.csv lines
   def print_group_results
-    lines = File.readlines('./tmp2.csv')
+    lines = File.readlines('./bonus_table.csv')
     conts = String.new(mk_header(lines[0]))
     conts << push_average_final_score(lines)
     File.open('./final_group_results.csv', 'w') { |file| file.print conts }
