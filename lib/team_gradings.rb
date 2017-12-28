@@ -45,11 +45,11 @@ module TeamGradings
     desc 'upload', 'upload tables'
     def upload
       read_target
-      tmp_csv = MkScore.new.print_score_table
-      tmp2_csv = TransABCTo321.new(tmp_csv).conts
-      File.open('./tmp2.csv', 'w') { |file| file.print(tmp2_csv) }
+      weekly_table = MkScore.new.print_score_table
+      table_with_scores = TransABCTo321.new(weekly_table).conts
+      File.open('./tmp2.csv', 'w') { |file| file.print(table_with_scores) }
       File.open(@target_file, 'w') do |file|
-        file.print(TransHiki.new(tmp2_csv).conts)
+        file.print(TransHiki.new(table_with_scores).conts)
       end
       upload_to_hiki
     end
