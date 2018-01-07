@@ -1,21 +1,8 @@
 #+STARTUP: indent nolineimages nofold
+#+OPTIONS: ^:{}
+
 * TeamGradings
-
 procedures for team gradings
-** Installation
-
-Add this line to your application's Gemfile:
-
-#+begin_src ruby
-gem 'team_gradings'
-#+end_src
-
-And then execute: =$ bundle=
-
-Or install it yourself as: =$ gem install team_gradings=
-
-
-** Usage
 
 ** help
 #+begin_src bash
@@ -31,41 +18,45 @@ Commands:
   team_grading upload          # upload tables
 #+end_src
 
-** Contributing
 
-Bug reports and pull requests are welcome on GitHub at 
-https://github.com/daddygongon/team_gradings. 
-This project is intended to be a safe, 
-welcoming space for collaboration, 
-and contributors are expected to adhere to the 
-[Contributor Covenant](http://contributor-covenant.org) code of conduct.
-
-** License
-
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
-** Code of Conduct
-
-Everyone interacting in the TeamGradings project’s codebases, issue trackers,
- chat rooms and mailing lists is expected to follow
- the [code of conduct](https://github.com/daddygongon/team_gradings/blob/master/CODE_OF_CONDUCT.md).
+* FILES
+初期ファイルとして，
+```
+./.team_gradings
+./Group.list
+./Report.tsv
+./Speaker.list
+```
 
 * team gradingの仕方
+
 ** initial
-1. 科目の名前(hikiのfile名)をどっかに置く
-1. Group.listを作成
+1) 科目の名前(hikiのfile名)を./.team_gradingsに置く
+2) Group.listを作成
 
 ** 日常手順
-1. team_grading report
-1. team_grading speaker
-1. team_grading upload
-1. hiki sync
+1) team_grading report
+2) team_grading speaker
+3) team_grading upload
+4) hiki sync
 
 ** final score
-1. 個人成績をfinal_exam.csvに記録(no, score\n, ...)
-1. group平均を記録
-1. bonusを追加して，group成績を確定．uploadに回す
-1. 個人成績とgroup成績とgroup最終成績を出力(tmp4.csv)
-1. luna sheetに登録
-1. upload
+1) 個人成績をfinal_exam.csvに記録(no, score\n, ...)
+2) team_grading final
+   1. final_greoup_results.csv:bonusを追加して，group成績を確定．uploadに回す
+   2. personal_results.csv:個人成績とgroup成績とgroup最終成績を出力
+3) luna sheetに登録
+4) upload
+
+** Installation
+
+Add this line to your application's Gemfile:
+
+#+begin_src ruby
+gem 'team_gradings'
+#+end_src
+
+And then execute: =$ bundle=
+
+Or install it yourself as: =$ gem install team_gradings=
 
