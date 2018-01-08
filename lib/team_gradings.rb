@@ -14,10 +14,6 @@ module TeamGradings
   class CLI < Thor
     package_name "team_gradings"
 
-    def initialize(*args)
-      super
-    end
-
     desc 'list', 'list group name'
     def list
       File.readlines(File.join('.', 'Group.list')).each do |line|
@@ -38,19 +34,18 @@ module TeamGradings
     end
 
     desc 'weekly', 'weekly procedures'
-    long_desc File.read(
-               File.join(File.expand_path("..",__FILE__), 'long_desc/weekly.txt'))
+    long_desc File.read(File.join(File.expand_path('..', __FILE__),
+                                  'long_desc/weekly.txt'))
     def weekly
       report
       speaker
-      upload
+      puts 'report, speakerの編集が終わったらteam_gradings uploadをかける.'
       exit
     end
 
     desc 'final_score', 'mk final scores'
-    long_desc File.read(
-               File.join(
-               File.expand_path("../../lib/long_desc", __FILE__), 'final_score.txt'))
+    long_desc File.read(File.join(File.expand_path('..', __FILE__),
+                                  'long_desc/final_score.txt'))
     def final_score
       upload
       FinalScore.new
