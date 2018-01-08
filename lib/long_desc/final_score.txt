@@ -1,0 +1,11 @@
+1) 個人成績をfinal_exam.csvに記録(no, score\n, ...)
+
+2) team_grading final
+
+1. final_greoup_results.csv:bonusを追加して，group成績を確定．uploadに回す
+
+2. personal_results.csv:個人成績とgroup成績とgroup最終成績を出力
+
+3) lunaのsheetにpresonal_resultsを手動で登録
+
+4) 手動でupload

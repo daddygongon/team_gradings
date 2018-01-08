@@ -21,12 +21,12 @@ Commands:
 
 * FILES
 初期ファイルとして，
-```
+#+begin_src bash
 ./.team_gradings
 ./Group.list
 ./Report.tsv
 ./Speaker.list
-```
+#+end_src
 
 * team gradingの仕方
 

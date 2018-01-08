@@ -3,3 +3,4 @@
 require "team_gradings"
 
 TeamGradings::CLI.start(ARGV)
+
