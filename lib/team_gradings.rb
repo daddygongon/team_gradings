@@ -25,13 +25,14 @@ module TeamGradings
     desc 'initial', 'setup initial files on the upstream'
     def initial
       read_target
+      @template_dir = File.expand_path("../../lib/templates", __FILE__)
       p @target_file
       ['Rakefile', 'Group.list', 'Report.tsv', 'Speaker.list'].each do |file|
         if File.exist?(File.join('.', file))
           puts "#{file} exists at the current directory."
           next
         end
-        FileUtils.cp(File.join('lib','templates', file), '.', verbose: true)
+        FileUtils.cp(File.join(@template_dir, file), '.', verbose: true)
       end
       exit
     end
@@ -101,8 +102,8 @@ module TeamGradings
         begin
           @target_file = File.read('./.team_gradings')
         rescue
-          puts 'input target_file of hiki'
-          @target_file = STDIN.gets.chomp # "NumRecipeScore17"
+          puts 'input target_file of hiki: '
+          @target_file = STDIN.gets.chomp || 'NumRecipeScore17'
           File.open('./.team_gradings', 'w') { |f| f.print @target_file }
         end
       end
