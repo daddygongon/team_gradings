@@ -26,9 +26,12 @@ module TeamGradings
     def initial
       read_target
       p @target_file
-      ['Group.list', 'Report.tsv', 'Speaker.list'].each do |file|
-        next if File.exist?(File.join('.', file))
-        FileUtils.cp(File.join('templates', file), '.', verbose: true)
+      ['Rakefile', 'Group.list', 'Report.tsv', 'Speaker.list'].each do |file|
+        if File.exist?(File.join('.', file))
+          puts "#{file} exists at the current directory."
+          next
+        end
+        FileUtils.cp(File.join('lib','templates', file), '.', verbose: true)
       end
       exit
     end
