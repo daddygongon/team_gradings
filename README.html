@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="jp" xml:lang="jp">
+<head>
+<title>team_gradings</title>
+<!-- 2018-07-26 木 08:42 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="関西学院大学・理工学部・情報科学科　西谷滋人 2018" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="/Users/bob/Github/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/Users/bob/Github/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="/Users/bob/anaconda3/lib/python3.6/site-packages/notebook/static/components/jquery/jquery.min.js"></script>
+<script src="/Users/bob/anaconda3/lib/python3.6/site-packages/notebook/static/components/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/Users/bob/Github/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/Users/bob/Github/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"> <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js"></script>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">team_gradings</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. TeamGradings</a></li>
+<li><a href="#sec-2">2. help</a></li>
+<li><a href="#sec-3">3. FILES</a></li>
+<li><a href="#sec-4">4. team gradingの仕方</a>
+<ul>
+<li><a href="#sec-4-1">4.1. initial</a></li>
+<li><a href="#sec-4-2">4.2. 日常手順</a></li>
+<li><a href="#sec-4-3">4.3. final score</a></li>
+</ul>
+</li>
+<li><a href="#sec-5">5. file format</a>
+<ul>
+<li><a href="#sec-5-1">5.1. Group.list</a></li>
+<li><a href="#sec-5-2">5.2. Report.tsv</a></li>
+<li><a href="#sec-5-3">5.3. Speaker.list</a></li>
+<li><a href="#sec-5-4">5.4. head final_exam.csv</a></li>
+<li><a href="#sec-5-5">5.5. Installation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> TeamGradings</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+procedures for team gradings
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> help</h2>
+<div class="outline-text-2" id="text-2">
+<div class="org-src-container">
+
+<pre class="src src-bash">Commands:
+  team_grading count           # count members in Group.list
+  team_grading final           # mk final scores
+  team_grading group           # edit group list
+  team_grading help [COMMAND]  # Describe available commands or one specific command
+  team_grading initial         # setup initial files on the upstream
+  team_grading list            # list group name
+  team_grading report          # score report
+  team_grading speaker         # score speakers
+  team_grading upload          # upload tables
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> FILES</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+初期ファイルとして，
+</p>
+<div class="org-src-container">
+
+<pre class="src src-bash">./.team_gradings
+./Group.list
+./Report.tsv
+./Speaker.list
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> team gradingの仕方</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> initial</h3>
+<div class="outline-text-3" id="text-4-1">
+<ol class="org-ol">
+<li>科目の名前(hikiのfile名)を./.team_gradingsに置く
+</li>
+<li>Group.listを作成
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> 日常手順</h3>
+<div class="outline-text-3" id="text-4-2">
+<ol class="org-ol">
+<li>team_grading report
+</li>
+<li>team_grading speaker
+</li>
+<li>team_grading upload
+</li>
+<li>hiki sync
+</li>
+</ol>
+
+<p>
+file formatに記されたファイルを用意する．
+</p>
+<dl class="org-dl">
+<dt> Group.list </dt><dd>group名と構成メンバー
+</dd>
+<dt> Report.tsv </dt><dd>group名と成績，tsvでexcelでeditしやすいようにutf-16で作る
+</dd>
+<dt> Speaker.list </dt><dd>日付と発表者
+</dd>
+</dl>
+<p>
+これで
+</p>
+<pre class="example">
+team_gradings weekly
+</pre>
+<p>
+とするとそれぞれの編集作業ができる．
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-sec-4-3" class="outline-3">
+<h3 id="sec-4-3"><span class="section-number-3">4.3</span> final score</h3>
+<div class="outline-text-3" id="text-4-3">
+<ol class="org-ol">
+<li>個人成績をfinal_exam.csvに記録(no, score\n, &#x2026;)
+</li>
+<li>team_grading final
+<ol class="org-ol">
+<li>final_greoup_results.csv:bonusを追加して，group成績を確定．uploadに回す
+</li>
+<li>personal_results.csv:個人成績とgroup成績とgroup最終成績を出力
+</li>
+</ol>
+</li>
+<li>luna sheetに登録
+</li>
+</ol>
+<p>
+．excelにcopyした時は，
+</p>
+<pre class="example">
+if(mod(#D, 10000)= #E, 0, 1)
+</pre>
+<p>
+とかで学籍番号との一致を確認するべし．
+</p>
+<ol class="org-ol">
+<li>upload
+</li>
+</ol>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> file format</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1"><span class="section-number-3">5.1</span> Group.list</h3>
+<div class="outline-text-3" id="text-5-1">
+<pre class="example">
+# 小林, 4664
+ちゃむ, 6011 6018 6016 ==6010== 6773
+落としたら留年, 5545 5528 5521 5034 5017 5008 5012 5033
+わいら。,6636 6640 6639 6637 6656 6631 6712
+</pre>
+</div>
+</div>
+<div id="outline-container-sec-5-2" class="outline-3">
+<h3 id="sec-5-2"><span class="section-number-3">5.2</span> Report.tsv</h3>
+<div class="outline-text-3" id="text-5-2">
+<pre class="example">
+チーム名	4月13日	4月20日	4月27日	5月4日	5月11日	5月18日	5月25日	6月1日	6月15日	6月22日	6月29日
+ちゃむ	B	A	A++	A	A+	A++	A+	A+++	A+	A++++	A
+落としたら留年	A	A+	A+	A++	A+	A+	A++	A+++	A++	A+++	A
+わいら。	A	A	A++	A++	A+	A++	A+	A+++	A+++	A+++	A+
+</pre>
+</div>
+</div>
+<div id="outline-container-sec-5-3" class="outline-3">
+<h3 id="sec-5-3"><span class="section-number-3">5.3</span> Speaker.list</h3>
+<div class="outline-text-3" id="text-5-3">
+<pre class="example">
+# 04/07 5464
+# 04/14 チームぶた
+04/13 6691
+04/13 6787
+</pre>
+</div>
+</div>
+<div id="outline-container-sec-5-4" class="outline-3">
+<h3 id="sec-5-4"><span class="section-number-3">5.4</span> head final_exam.csv</h3>
+<div class="outline-text-3" id="text-5-4">
+<pre class="example">
+2067,
+5008,70
+5012,70
+5017,70
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-5-5" class="outline-3">
+<h3 id="sec-5-5"><span class="section-number-3">5.5</span> Installation</h3>
+<div class="outline-text-3" id="text-5-5">
+<p>
+Add this line to your application's Gemfile:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-ruby">gem 'team_gradings'
+</pre>
+</div>
+
+<p>
+And then execute: <code>$ bundle</code>
+</p>
+
+<p>
+Or install it yourself as: <code>$ gem install team_gradings</code>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: 関西学院大学・理工学部・情報科学科　西谷滋人 2018</p>
+<p class="date">Created: 2018-07-26 木 08:42</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

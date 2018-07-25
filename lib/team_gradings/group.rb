@@ -15,10 +15,11 @@ class Group
     sum = 0.0
     @members.each do |id|
       next if scores[id].nil?
-      sum += scores[id].to_f
+      score = scores[id].to_f
+      sum += score
       num += 1
     end
-    @average = (sum / num).round
+    @average = (num == 0) ? 0.0 : (sum / num).round
   end
 
   def put_personal_score(scores)

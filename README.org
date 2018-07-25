@@ -1,10 +1,20 @@
-#+STARTUP: indent nolineimages nofold
 #+OPTIONS: ^:{}
+# +STARTUP: indent nolineimages
+#+TITLE: team_gradings
+#+AUTHOR: 関西学院大学・理工学部・情報科学科　西谷滋人 2018
+#+EMAIL:     (concat "nishitani@kwansei.ac.jp")
+#+LANGUAGE:  jp
+#+OPTIONS:   H:4 toc:t num:2
+
+#+SETUPFILE: /Users/bob/Github/org-html-themes/setup/theme-readtheorg-local-daddygongon.setup
 
 * TeamGradings
 procedures for team gradings
 
-** help
+/Users/bob/Desktop/Lectures/ModelPhys/ModelPhys_Lecture_data/2018/Gradings
+に動いてるやつがある．
+
+* help
 #+begin_src bash
 Commands:
   team_grading count           # count members in Group.list
@@ -40,13 +50,56 @@ Commands:
 3) team_grading upload
 4) hiki sync
 
+file formatに記されたファイルを用意する．
+- Group.list :: group名と構成メンバー
+- Report.tsv :: group名と成績，tsvでexcelでeditしやすいようにutf-16で作る
+- Speaker.list :: 日付と発表者
+これで
+: team_gradings weekly
+とするとそれぞれの編集作業ができる．
+
+
 ** final score
 1) 個人成績をfinal_exam.csvに記録(no, score\n, ...)
 2) team_grading final
    1. final_greoup_results.csv:bonusを追加して，group成績を確定．uploadに回す
    2. personal_results.csv:個人成績とgroup成績とgroup最終成績を出力
 3) luna sheetに登録
+．excelにcopyした時は，
+: if(mod(#D, 10000)= #E, 0, 1)
+とかで学籍番号との一致を確認するべし．
 4) upload
+
+
+* file format
+** Group.list
+#+begin_example
+# 小林, 4664
+ちゃむ, 6011 6018 6016 ==6010== 6773
+落としたら留年, 5545 5528 5521 5034 5017 5008 5012 5033
+わいら。,6636 6640 6639 6637 6656 6631 6712
+#+end_example
+** Report.tsv
+#+begin_example
+チーム名	4月13日	4月20日	4月27日	5月4日	5月11日	5月18日	5月25日	6月1日	6月15日	6月22日	6月29日
+ちゃむ	B	A	A++	A	A+	A++	A+	A+++	A+	A++++	A
+落としたら留年	A	A+	A+	A++	A+	A+	A++	A+++	A++	A+++	A
+わいら。	A	A	A++	A++	A+	A++	A+	A+++	A+++	A+++	A+
+#+end_example
+** Speaker.list
+#+begin_example
+# 04/07 5464
+# 04/14 チームぶた
+04/13 6691
+04/13 6787
+#+end_example
+** head final_exam.csv
+#+begin_example
+2067,
+5008,70
+5012,70
+5017,70
+#+end_example
 
 ** Installation
 
