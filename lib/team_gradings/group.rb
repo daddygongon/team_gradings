@@ -1,9 +1,10 @@
 class Group
   attr_accessor :members, :bonus, :final_score, :average, :name
   attr_accessor :speaker_score, :report_score
-  def initialize(name, members, opts=nil)
+  def initialize(name, members)
     @name = name
-    p members if opts[:verbose]
+    p name
+    p members
     @members = members.split(' ')
     @bonus = 0
     @average = 0

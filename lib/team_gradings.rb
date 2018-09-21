@@ -61,11 +61,9 @@ module TeamGradings
     end
 
     desc 'upload', 'upload tables'
-    def upload(*argv)
+    def upload
       read_target
-      p *argv
-      argv[0]=='--verbose' ? opts[verbose: true] : opts=nil
-      weekly_table = MkScore.new.print_score_table(opts)
+      weekly_table = MkScore.new.print_score_table
       table_with_scores = TransABCTo321.new(weekly_table).conts
       File.open('./bonus_table.csv', 'w') { |file| file.print(table_with_scores) }
       File.open(@target_file, 'w') do |file|
