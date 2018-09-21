@@ -4,20 +4,20 @@ require 'kconv'
 # make hash table between member and group
 class MkScore
   attr_accessor :group, :m2g
-  def initialize
+  def initialize(opts=nil)
     @group = {}
     @m2g = {}
-    mk_group
+    mk_group(opts)
     gets_speaker_score
     gets_report_score
     print_score_table
   end
 
-  def mk_group
+  def mk_group(opts=nil)
     File.open(File.join('.', 'Group.list'), 'r').each do |line|
       next if line =~ /^\#/
       team_name, members = line.strip.split(/,/)
-      g = Group.new(team_name, members)
+      g = Group.new(team_name, members, opts)
       members.split(/ /).each do |mem|
         @m2g.store(mem, team_name)
       end
