@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+require 'colorize'
 
 # grading final scores
 class FinalScore
@@ -35,10 +36,18 @@ class FinalScore
 
   def get_final_exam_score(file)
     scores = {}
-    File.open(file).each do |line|
-      no, score = line.chomp.split(/,/)
-      scores.store(no, score)
-    end
+    file_open =
+      begin
+        File.open(file)
+      rescue => eval
+        puts eval.to_s.red
+        puts "Before final_scoring, make csv file with\n\t 'student_id(4 digits), score'.\n".green
+        exit
+      end
+    file_open.each do |line|
+        no, score = line.chomp.split(/,/)
+        scores.store(no, score)
+      end
     scores
   end
 
