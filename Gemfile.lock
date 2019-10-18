@@ -2,23 +2,25 @@ PATH
   remote: .
   specs:
     team_gradings (0.1.0)
+      colorize
       thor
 
 GEM
   remote: https://rubygems.org/
   specs:
-    minitest (5.10.3)
+    colorize (0.8.1)
+    minitest (5.12.2)
     rake (10.5.0)
-    thor (0.20.0)
+    thor (0.20.3)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler (~> 1.16)
+  bundler (> 2.0)
   minitest (~> 5.0)
   rake (~> 10.0)
   team_gradings!
 
 BUNDLED WITH
-   1.16.0
+   2.0.2

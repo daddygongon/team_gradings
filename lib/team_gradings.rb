@@ -81,7 +81,8 @@ module TeamGradings
 
     desc 'report', 'score report'
     def report
-      system 'open ./Report.tsv'
+      #      system 'open ./Report.tsv'
+            system 'open -a numbers ./Report.tsv'
     end
 
     desc 'group', 'edit group list'

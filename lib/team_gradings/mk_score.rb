@@ -40,8 +40,12 @@ class MkScore
   end
 
   def gets_report_score
-    lines = File.readlines(File.join('.', 'Report.tsv'), '\r')
-    lines_conv = lines[0].kconv(Kconv::UTF8, Kconv::UTF16).split("\n")
+    # for Excell
+    # lines = File.readlines(File.join('.', 'Report.tsv'), '\r')
+    # lines_conv = lines[0].kconv(Kconv::UTF8, Kconv::UTF16).split("\n")
+
+    # for Number
+    lines_conv = File.readlines(File.join('.', 'Report.tsv'))
     @head = lines_conv.shift
     lines_conv.each do |line|
       l1 = line.split(/\t/)
