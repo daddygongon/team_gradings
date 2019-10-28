@@ -43,6 +43,7 @@ module TeamGradings
     def weekly
       report
       speaker
+      puts 'reportはtsvで保存する．'
       puts 'report, speakerの編集が終わったらteam_gradings uploadをかける.'
       exit
     end
