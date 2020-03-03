@@ -11,7 +11,6 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{Procedures for team grading.}
   spec.description   = %q{Procedures for team grading.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
@@ -31,9 +30,9 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency "bundler", "~> 2.0"
-  spec.add_development_dependency "rake", "~> 13.0"
+  spec.add_development_dependency "rake", "~> 12.3.3"
   spec.add_development_dependency "minitest", "~> 5.0"
   spec.add_runtime_dependency "thor"
-  spec.add_runtime_dependency "colorize" 
+  spec.add_runtime_dependency "colorize"
 #  spec.add_runtime_dependency "kconv" # no gems...
 end
